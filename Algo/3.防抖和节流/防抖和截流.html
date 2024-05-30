@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body style="height: 5000px;">
+    <script>
+        // 防抖
+        function debounce(fn, wait) {
+            var timeout = null;
+            return () => {
+                if (timeout !== null)
+                    clearTimeout(timeout);
+                timeout = setTimeout(fn, wait);
+            }
+        }
+        // 截流
+        function throttle(fn, delay) {
+            var lastTime = 0; // 上一次函数触发的时间
+            return () => {
+                var nowTime = Date.now();
+                if (nowTime - lastTime > delay) {
+                    fn(); // method.apply(this) 看你用不用箭头函数
+                    lastTime = nowTime;
+                }
+            }
+        }
+        //处理函数
+        function handle() {
+            console.log(Math.random());
+        }
+
+
+        // 滚动事件
+        // window.addEventListener('scroll', handle, 1000);
+        window.addEventListener('scroll', throttle(handle, 1000));
+    </script>
+</body>
+
+</html>
+</script>
+</body>
+
+</html>
