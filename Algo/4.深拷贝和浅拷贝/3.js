@@ -1,21 +1,25 @@
 // 序列化反序列化法 使用JSON对象的parse和stringify方法来实现深拷贝
 function deepClone(obj) {
-    let _obj = JSON.stringify(obj),
-        objClone = JSON.parse(_obj);
-    return objClone
+  let _obj = JSON.stringify(obj),
+    objClone = JSON.parse(_obj);
+  return objClone;
 }
 let obj1 = {
-    a: {
-        b: 1
-    }
+  a: {
+    b: 1,
+  },
 };
-Object.defineProperty(obj1, 'innumerable', {
-    value: '不可枚举属性',
-    enumerable: false
+Object.defineProperty(obj1, "innumerable", {
+  value: "不可枚举属性",
+  enumerable: true,
 });
-let obj2 = deepClone(obj1)
-console.log(obj1)
-console.log(obj2)
+// let obj2 = deepClone(obj1)
+console.log(obj1);
+
+for (let prop in obj1) {
+  console.log("[prop]", prop);
+}
+// console.log(obj2)
 // 它也只能深拷贝对象和数组，对于其他种类的对象，会失真。
 // 这种方法比较适合平常开发中使用，因为通常不需要考虑对象和数组之外的类型。
 
